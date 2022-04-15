@@ -14,10 +14,10 @@ class PagerAdapter(fm: FragmentManager, l:Lifecycle) : FragmentStateAdapter(fm, 
 
     override fun createFragment(position: Int): Fragment {
         return when(position){
-            0 -> GenderPage.newInstance("", "")
-            1 -> DatePage.newInstance("", "")
-            2 -> PrayerPage.newInstance("", "")
-            else -> GenderPage.newInstance("", "")
+            0 -> GenderPage()
+            1 -> DatePage()
+            2 -> PrayerPage()
+            else -> GenderPage()
         }
     }
 
