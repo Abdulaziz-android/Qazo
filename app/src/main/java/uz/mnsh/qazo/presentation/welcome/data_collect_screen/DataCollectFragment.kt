@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import uz.mnsh.qazo.R
 import uz.mnsh.qazo.databinding.FragmentDataCollectBinding
 import uz.mnsh.qazo.presentation.welcome.adapter.PagerAdapter
 

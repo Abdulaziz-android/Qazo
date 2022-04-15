@@ -1,4 +1,4 @@
-package uz.mnsh.qazo.presentation.welcome.data_collect_screen
+package uz.mnsh.qazo.presentation.welcome.data_collect_screen.page
 
 import android.app.DatePickerDialog
 import android.content.Context
@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,85 +16,50 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import it.sephiroth.android.library.numberpicker.NumberPicker
 import uz.mnsh.qazo.R
 import uz.mnsh.qazo.common.Constants
 import uz.mnsh.qazo.common.Gender
-import uz.mnsh.qazo.databinding.FragmentPagerBinding
 import uz.mnsh.qazo.databinding.PageDateBinding
-import uz.mnsh.qazo.databinding.PageGenderBinding
-import uz.mnsh.qazo.databinding.PagePrayerBinding
+import uz.mnsh.qazo.presentation.welcome.data_collect_screen.DataCollectViewModel
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class PagerFragment : Fragment(), DatePickerDialog.OnDateSetListener {
+class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private var param1: String? = null
-    private var position: Int? = null
+    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
-            position = it.getInt(ARG_PARAM2)
+            param2 = it.getString(ARG_PARAM2)
         }
     }
 
-    private var _binding: FragmentPagerBinding? = null
+
+    private var _binding: PageDateBinding? = null
     private val binding get() = _binding!!
     private val parentViewModel: DataCollectViewModel by viewModels({ requireParentFragment() })
-    private val TAG = "PagerFragment"
-    private var _pageDateBinding: PageDateBinding? = null
-    private val pageDateBinding get() = _pageDateBinding!!
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPagerBinding.inflate(layoutInflater, container, false)
+        _binding = PageDateBinding.inflate(layoutInflater, container, false)
 
-        when (position) {
-            0 -> {
-                setGenderPage()
-            }
-            1 -> {
-                setDatePage()
-            }
-            2 -> {
-                setPrayerPage()
-            }
-        }
+        setDatePage()
 
         return binding.root
     }
 
-    private fun setGenderPage() {
-        binding.viewStub.layoutResource = R.layout.page_gender
-        val view = binding.viewStub.inflate()
-        val pageBinding = PageGenderBinding.bind(view)
-
-        pageBinding.radioGroup.setOnCheckedChangeListener { _, p1 ->
-            val gender: Gender? = when (p1) {
-                R.id.male_rb -> Gender.MALE
-                R.id.female_rb -> Gender.FEMALE
-                else -> null
-            }
-            gender?.let { parentViewModel.setGender(it) }
-        }
-    }
-
     private fun setDatePage() {
-        binding.viewStub.layoutResource = R.layout.page_date
-        val view = binding.viewStub.inflate()
-        _pageDateBinding = PageDateBinding.bind(view)
-
         setUpFemaleWindow()
         setUpCalendarUI()
         setUpPubertyAgeNP()
@@ -106,22 +72,22 @@ class PagerFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 is Gender.MALE -> {
                     parentViewModel.setPubertyAge(Constants.DEFAULT_PUBERTY_AGE_MALE)
                     parentViewModel.setMenstrualDays(0)
-                    pageDateBinding.spacer.visibility = View.VISIBLE
-                    pageDateBinding.femaleTv.visibility = View.GONE
-                    pageDateBinding.femaleCard.visibility = View.GONE
+                    binding.spacer.visibility = View.VISIBLE
+                    binding.femaleTv.visibility = View.GONE
+                    binding.femaleCard.visibility = View.GONE
                 }
                 is Gender.FEMALE -> {
-                    val menstrualDays = pageDateBinding.femaleNp.progress
+                    val menstrualDays = binding.femaleNp.progress
                     parentViewModel.setPubertyAge(Constants.DEFAULT_PUBERTY_AGE_FEMALE)
                     parentViewModel.setMenstrualDays(menstrualDays)
-                    pageDateBinding.spacer.visibility = View.GONE
-                    pageDateBinding.femaleTv.visibility = View.VISIBLE
-                    pageDateBinding.femaleCard.visibility = View.VISIBLE
+                    binding.spacer.visibility = View.GONE
+                    binding.femaleTv.visibility = View.VISIBLE
+                    binding.femaleCard.visibility = View.VISIBLE
                 }
             }
         }
 
-        pageDateBinding.femaleNp.numberPickerChangeListener =
+        binding.femaleNp.numberPickerChangeListener =
             object : NumberPicker.OnNumberPickerChangeListener {
                 override fun onProgressChanged(
                     numberPicker: NumberPicker,
@@ -150,12 +116,12 @@ class PagerFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         val sdf = SimpleDateFormat("dd MMM", Locale("ru"))
 
         val dayOfMonth = sdf.format(calendar.time)
-        pageDateBinding.dayTv.text = dayOfMonth
-        pageDateBinding.yearTv.text = year.toString()
+        binding.dayTv.text = dayOfMonth
+        binding.yearTv.text = year.toString()
     }
 
     private fun setUpCalendarUI() {
-        pageDateBinding.calendarCard.setOnClickListener {
+        binding.calendarCard.setOnClickListener {
             val year = parentViewModel.year.value!!
             val month = parentViewModel.month.value!!
             val day = parentViewModel.day.value!!
@@ -172,9 +138,9 @@ class PagerFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     private fun setUpPubertyAgeNP() {
-        parentViewModel.setPubertyAge(pageDateBinding.pubertyAgeNp.progress)
+        parentViewModel.setPubertyAge(binding.pubertyAgeNp.progress)
 
-        pageDateBinding.pubertyAgeNp.numberPickerChangeListener = object : NumberPicker.OnNumberPickerChangeListener{
+        binding.pubertyAgeNp.numberPickerChangeListener = object : NumberPicker.OnNumberPickerChangeListener{
             override fun onProgressChanged(
                 numberPicker: NumberPicker,
                 progress: Int,
@@ -186,26 +152,26 @@ class PagerFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             override fun onStartTrackingTouch(numberPicker: NumberPicker) {}
             override fun onStopTrackingTouch(numberPicker: NumberPicker) {}
         }
-        pageDateBinding.forgetChb.setOnCheckedChangeListener { _, isChecked ->
+        binding.forgetChb.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 val defaultPubertyAge = when (parentViewModel.gender.value){
                     is Gender.MALE -> Constants.DEFAULT_PUBERTY_AGE_MALE
                     is Gender.FEMALE -> Constants.DEFAULT_PUBERTY_AGE_FEMALE
                     else -> 9
                 }
-                pageDateBinding.pubertyAgeNp.setProgress(defaultPubertyAge)
-                pageDateBinding.pubertyAgeNp.isEnabled = false
-                pageDateBinding.pubertyAgeNp.descendantFocusability = ViewGroup.FOCUS_BLOCK_DESCENDANTS
+                binding.pubertyAgeNp.setProgress(defaultPubertyAge)
+                binding.pubertyAgeNp.isEnabled = false
+                binding.pubertyAgeNp.descendantFocusability = ViewGroup.FOCUS_BLOCK_DESCENDANTS
             }else{
-                pageDateBinding.pubertyAgeNp.isEnabled = true
-                pageDateBinding.pubertyAgeNp.descendantFocusability = ViewGroup.FOCUS_AFTER_DESCENDANTS
+                binding.pubertyAgeNp.isEnabled = true
+                binding.pubertyAgeNp.descendantFocusability = ViewGroup.FOCUS_AFTER_DESCENDANTS
             }
             view?.hideKeyboard()
         }
 
 
-        pageDateBinding.titleTv.movementMethod = LinkMovementMethod.getInstance()
-        pageDateBinding.titleTv.setText(addClickablePart(pageDateBinding.titleTv.text.toString()), TextView.BufferType.SPANNABLE)
+        binding.titleTv.movementMethod = LinkMovementMethod.getInstance()
+        binding.titleTv.setText(addClickablePart(binding.titleTv.text.toString()), TextView.BufferType.SPANNABLE)
     }
 
     private fun addClickablePart(str: String): SpannableStringBuilder {
@@ -221,6 +187,7 @@ class PagerFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                         binding.root.context, clickString,
                         Toast.LENGTH_SHORT
                     ).show()
+                    showPlayerDialog()
                 }
             }, idx1, idx2, 0)
             idx1 = str.indexOf("[", idx2)
@@ -228,28 +195,26 @@ class PagerFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         return ssb
     }
 
-    private fun setPrayerPage() {
-        binding.viewStub.layoutResource = R.layout.page_prayer
-        val view = binding.viewStub.inflate()
-        val pageBinding = PagePrayerBinding.bind(view)
+    private fun showPlayerDialog() {
+
     }
 
     companion object {
 
+
+        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: Int) =
-            PagerFragment().apply {
+        fun newInstance(param1: String, param2: String) =
+            DatePage().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
-                    putInt(ARG_PARAM2, param2)
+                    putString(ARG_PARAM2, param2)
                 }
             }
     }
-
 
     fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
-
 }
