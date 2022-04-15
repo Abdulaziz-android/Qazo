@@ -25,7 +25,7 @@
     <string name="male">Эркак</string>
     <string name="cant_remember">Эслай олмайман</string>
     <string name="date_page_title">Туғилган сана ва балоғатга етган ёшингизни киритинг</string>
-    <string name="prayer_page_title">Маълум бир муддат ўқиган намозингизни киритинг</string>
+    <string name="prayer_page_title">Балоғат ёшига тўлганингиздан сўнг маълум бир муддат ўқиган намозингизни киритинг</string>
     <string name="year">Йил</string>
     <string name="month">Ой</string>
     <string name="day">Кун</string>

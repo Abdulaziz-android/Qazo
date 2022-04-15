@@ -34,7 +34,6 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
     private val binding get() = _binding!!
     private val parentViewModel: DataCollectViewModel by viewModels({ requireParentFragment() })
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,7 +56,8 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
         parentViewModel.gender.observe(viewLifecycleOwner) { gender ->
             when (gender) {
                 is Gender.MALE -> {
-                    parentViewModel.setPubertyAge(Constants.DEFAULT_PUBERTY_AGE_MALE)
+                  //  parentViewModel.setPubertyAge(Constants.DEFAULT_PUBERTY_AGE_MALE)
+                    binding.pubertyAgeNp.progress = Constants.DEFAULT_PUBERTY_AGE_MALE
                     parentViewModel.setMenstrualDays(0)
                     binding.spacer.visibility = View.VISIBLE
                     binding.femaleTv.visibility = View.GONE
@@ -65,7 +65,8 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
                 }
                 is Gender.FEMALE -> {
                     val menstrualDays = binding.femaleNp.progress
-                    parentViewModel.setPubertyAge(Constants.DEFAULT_PUBERTY_AGE_FEMALE)
+                   // parentViewModel.setPubertyAge(Constants.DEFAULT_PUBERTY_AGE_FEMALE)
+                    binding.pubertyAgeNp.progress = Constants.DEFAULT_PUBERTY_AGE_FEMALE
                     parentViewModel.setMenstrualDays(menstrualDays)
                     binding.spacer.visibility = View.GONE
                     binding.femaleTv.visibility = View.VISIBLE
@@ -102,10 +103,14 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
         calendar.set(Calendar.MONTH, month)
         calendar.set(Calendar.DAY_OF_MONTH, day)
         val sdf = SimpleDateFormat("dd MMM", Locale("ru"))
+        val bsdf = SimpleDateFormat(Constants.BIRTH_DATE_PATTERN, Locale("ru"))
 
         val dayOfMonth = sdf.format(calendar.time)
         binding.dayTv.text = dayOfMonth
         binding.yearTv.text = year.toString()
+
+        val birthDate = bsdf.format(calendar.time)
+        parentViewModel.setDate(birthDate)
     }
 
     private fun setUpCalendarUI() {

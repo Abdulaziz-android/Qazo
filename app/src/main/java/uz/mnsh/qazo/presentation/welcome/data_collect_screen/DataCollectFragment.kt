@@ -36,7 +36,10 @@ class DataCollectFragment : Fragment() {
                 binding.viewPager.currentItem == 2 -> {
                     Toast.makeText(binding.root.context, "", Toast.LENGTH_SHORT).show()
                 }
-                else -> binding.viewPager.currentItem += 1
+                else -> {
+                    binding.viewPager.currentItem += 1
+                    viewModel.setPagePosition(binding.viewPager.currentItem)
+                }
             }
         }
 
