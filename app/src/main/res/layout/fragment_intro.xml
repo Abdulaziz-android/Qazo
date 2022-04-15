@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/intro_back"
+    tools:context=".presentation.welcome.intro_screen.IntroFragment">
+
+    <ImageView
+        android:id="@+id/content_iv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/im_men_mosque"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.12"
+        app:layout_constraintWidth_percent="0.8"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/intro_title"
+        android:textColor="@color/brown"
+        android:textSize="20sp"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/description_tv"
+        app:layout_constraintEnd_toEndOf="@id/content_iv"
+        app:layout_constraintStart_toStartOf="@id/content_iv"
+        app:layout_constraintTop_toBottomOf="@id/content_iv" />
+
+    <TextView
+        android:id="@+id/description_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/intro_description"
+        android:textColor="@color/brown_light"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/positive_btn"
+        app:layout_constraintEnd_toEndOf="@id/content_iv"
+        app:layout_constraintStart_toStartOf="@id/content_iv"
+        app:layout_constraintTop_toBottomOf="@id/title_tv"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/positive_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingVertical="10dp"
+        android:text="@string/positive_answer"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@color/blue"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@id/negative_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/negative_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:text="@string/negative_answer"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        app:backgroundTint="@color/ruby"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88"
+        app:layout_constraintWidth_percent="0.8" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable-v23/checkbox_unchecked_rb.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/checkbox_checked_rb.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/checkbox_unchecked_rb.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_baseline_pause_circle_outline_24.xml" value="0.13" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_baseline_play_circle_outline_24.xml" value="0.13" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_compass.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_kaaba.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_qibla_compass.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_splash_logo.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/intro_back.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/rbtn_selector.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/activity_main.xml" value="0.17314814814814813" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/activity_welcome.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/app_bar_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/content_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_data_collect.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_intro.xml" value="0.22" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_pager.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_qibla.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/layout_pager.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/page_date.xml" value="0.22" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/page_gender.xml" value="0.22" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/page_prayer.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/pager_date_collect.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/pager_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/menu/main.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1165" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

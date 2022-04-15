@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item>
+        <shape>
+            <solid android:color="@color/ruby" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <item
+        android:width="30dp"
+        android:height="30dp"
+        android:bottom="10dp"
+        android:start="10dp"
+        android:top="10dp">
+        <shape>
+            <solid android:color="@color/white" />
+            <corners android:radius="8dp" />
+        </shape>
+
+    </item>
+    <item
+        android:width="20dp"
+        android:height="20dp"
+        android:drawable="@drawable/ic_baseline_check_24"
+        android:gravity="center_vertical"
+        android:start="15dp" />
+</layer-list>
