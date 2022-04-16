@@ -1,6 +1,7 @@
 package uz.mnsh.qazo.presentation.welcome.data_collect_screen
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +17,13 @@ class DataCollectFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter:PagerAdapter
     private val viewModel: DataCollectViewModel by viewModels()
+    private val TAG = "DataCollectFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDataCollectBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentDataCollectBinding.inflate(inflater, container, false)
 
         adapter = PagerAdapter(childFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
@@ -34,7 +36,8 @@ class DataCollectFragment : Fragment() {
                     Toast.makeText(binding.root.context, "Жинс танланмаган!", Toast.LENGTH_SHORT).show()
                 }
                 binding.viewPager.currentItem == 2 -> {
-                    Toast.makeText(binding.root.context, "", Toast.LENGTH_SHORT).show()
+                    val user = viewModel.getUser()
+                    Log.d(TAG, "onCreateView: $user")
                 }
                 else -> {
                     binding.viewPager.currentItem += 1

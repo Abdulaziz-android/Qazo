@@ -1,5 +1,6 @@
 package uz.mnsh.qazo.presentation.welcome.data_collect_screen.page
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
@@ -33,30 +34,33 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
     private var _binding: PageDateBinding? = null
     private val binding get() = _binding!!
     private val parentViewModel: DataCollectViewModel by viewModels({ requireParentFragment() })
+    private val TAG = "DatePage"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = PageDateBinding.inflate(layoutInflater, container, false)
+        _binding = PageDateBinding.inflate(inflater, container, false)
 
-        setDatePage()
+        parentViewModel.pagePosition.observe(viewLifecycleOwner){ position ->
+            if (position==1){
+                setDatePage()
+            }
+        }
 
         return binding.root
     }
 
     private fun setDatePage() {
         setUpFemaleWindow()
-        setUpCalendarUI()
         setUpPubertyAgeNP()
+        setUpCalendarUI()
     }
 
 
     private fun setUpFemaleWindow() {
-        parentViewModel.gender.observe(viewLifecycleOwner) { gender ->
-            when (gender) {
+        when (parentViewModel.gender.value) {
                 is Gender.MALE -> {
-                  //  parentViewModel.setPubertyAge(Constants.DEFAULT_PUBERTY_AGE_MALE)
                     binding.pubertyAgeNp.progress = Constants.DEFAULT_PUBERTY_AGE_MALE
                     parentViewModel.setMenstrualDays(0)
                     binding.spacer.visibility = View.VISIBLE
@@ -65,14 +69,13 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
                 }
                 is Gender.FEMALE -> {
                     val menstrualDays = binding.femaleNp.progress
-                   // parentViewModel.setPubertyAge(Constants.DEFAULT_PUBERTY_AGE_FEMALE)
                     binding.pubertyAgeNp.progress = Constants.DEFAULT_PUBERTY_AGE_FEMALE
                     parentViewModel.setMenstrualDays(menstrualDays)
                     binding.spacer.visibility = View.GONE
                     binding.femaleTv.visibility = View.VISIBLE
                     binding.femaleCard.visibility = View.VISIBLE
                 }
-            }
+            else -> {}
         }
 
         binding.femaleNp.numberPickerChangeListener =
@@ -111,28 +114,42 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
 
         val birthDate = bsdf.format(calendar.time)
         parentViewModel.setDate(birthDate)
+/*
+        val diff = year - Calendar.getInstance().get(Calendar.YEAR)
+        if (diff<15 && diff>9){
+            binding.pubertyAgeNp.maxValue = diff
+        }else {
+            binding.pubertyAgeNp.maxValue = 15
+        }*/
     }
 
     private fun setUpCalendarUI() {
+        val year = parentViewModel.year.value!!
+        val month = parentViewModel.month.value!!
+        val day = parentViewModel.day.value!!
+
+        val dialog = DatePickerDialog(
+            binding.root.context,
+            R.style.DatePickerTheme,
+            this,
+            year, month, day
+        )
         binding.calendarCard.setOnClickListener {
-            val year = parentViewModel.year.value!!
-            val month = parentViewModel.month.value!!
-            val day = parentViewModel.day.value!!
-            val dialog = DatePickerDialog(
-                binding.root.context,
-                R.style.DatePickerTheme,
-                this,
-                year, month, day
-            )
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.show()
         }
+        val cal = Calendar.getInstance()
+        val calNow = Calendar.getInstance()
+        val cYear = if (parentViewModel.gender.value==Gender.MALE) Constants.DEFAULT_PUBERTY_AGE_MALE
+        else Constants.DEFAULT_PUBERTY_AGE_FEMALE
+        cal.set(Calendar.YEAR, calNow.get(Calendar.YEAR) - cYear)
+        dialog.datePicker.maxDate = cal.timeInMillis
+
         setCalendarDate()
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun setUpPubertyAgeNP() {
-        parentViewModel.setPubertyAge(binding.pubertyAgeNp.progress)
-
         binding.pubertyAgeNp.numberPickerChangeListener =
             object : NumberPicker.OnNumberPickerChangeListener {
                 override fun onProgressChanged(
@@ -140,6 +157,17 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
                     progress: Int,
                     fromUser: Boolean
                 ) {
+                  /*  val calBirth = Calendar.getInstance()
+                    val calNow = Calendar.getInstance()
+                    val sdf = SimpleDateFormat(Constants.BIRTH_DATE_PATTERN, Locale.ENGLISH)
+                    calBirth.time = sdf.parse(parentViewModel.birthDate.value!!)!!
+                    val year = calNow.get(Calendar.YEAR) - calBirth.get(Calendar.YEAR)
+                    if (year<progress) {
+                        parentViewModel.setPubertyAge(progress)
+                    }else{
+                        binding.pubertyAgeNp.progress = parentViewModel.pubertyAge.value!!
+                    }
+*/
                     parentViewModel.setPubertyAge(progress)
                 }
 
@@ -162,7 +190,7 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
             }
             view?.hideKeyboard()
         }
-
+        parentViewModel.setPubertyAge(binding.pubertyAgeNp.progress)
 
         binding.titleTv.movementMethod = LinkMovementMethod.getInstance()
         binding.titleTv.setText(
@@ -177,7 +205,7 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
         var idx2: Int
         while (idx1 != -1) {
             idx2 = str.indexOf("т", idx1) + 1
-          //  val clickString = str.substring(idx1, idx2)
+            //  val clickString = str.substring(idx1, idx2)
             ssb.setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     showPlayerDialog()

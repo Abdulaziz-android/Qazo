@@ -23,7 +23,7 @@ class GenderPage : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = PageGenderBinding.inflate(layoutInflater, container, false)
+        _binding = PageGenderBinding.inflate(inflater, container, false)
 
         setGenderPage()
 

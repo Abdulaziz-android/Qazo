@@ -19,7 +19,7 @@ class IntroFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentIntroBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentIntroBinding.inflate(inflater, container, false)
 
         binding.negativeBtn.setOnClickListener {
             parentFragmentManager.beginTransaction()

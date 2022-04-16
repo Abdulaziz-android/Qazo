@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import it.sephiroth.android.library.numberpicker.NumberPicker
 import uz.mnsh.qazo.databinding.PagePrayerBinding
 import uz.mnsh.qazo.presentation.welcome.data_collect_screen.DataCollectViewModel
 
@@ -20,7 +21,7 @@ class PrayerPage : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = PagePrayerBinding.inflate(layoutInflater, container, false)
+        _binding = PagePrayerBinding.inflate(inflater, container, false)
 
 
         parentViewModel.pagePosition.observe(viewLifecycleOwner) {
@@ -34,14 +35,18 @@ class PrayerPage : Fragment() {
     }
 
     private val TAG = "PrayerPage"
-    private fun prepareNumberPickers(daysDatePage: Long) {
+    private fun prepareNumberPickers(daysDatePage: Int) {
         binding.yearNp.progress = 0
         binding.monthNp.progress = 0
         binding.dayNp.progress = 0
 
         val yearMax = (daysDatePage / 365)
         Log.d(TAG, "prepareNumberPickers: $daysDatePage $yearMax")
-        binding.yearNp.maxValue = yearMax.toInt()
+        binding.yearNp.maxValue = yearMax
+
+        binding.yearNp.numberPickerChangeListener = yearListener
+        binding.monthNp.numberPickerChangeListener = monthListener
+        binding.dayNp.numberPickerChangeListener = dayListener
 
        /* if (daysDatePage <= 30) {
             binding.dayNp.maxValue = daysDatePage.toInt()
@@ -56,6 +61,42 @@ class PrayerPage : Fragment() {
             binding.monthNp.maxValue = 11
             binding.yearNp.maxValue = (daysDatePage / 365.25).toInt()
         }*/
+    }
+
+    private val yearListener = object : NumberPicker.OnNumberPickerChangeListener{
+        override fun onProgressChanged(
+            numberPicker: NumberPicker,
+            progress: Int,
+            fromUser: Boolean
+        ) {
+            parentViewModel.setPerformedYear(progress)
+        }
+        override fun onStartTrackingTouch(numberPicker: NumberPicker) {}
+        override fun onStopTrackingTouch(numberPicker: NumberPicker) {}
+    }
+
+    private val monthListener = object : NumberPicker.OnNumberPickerChangeListener{
+        override fun onProgressChanged(
+            numberPicker: NumberPicker,
+            progress: Int,
+            fromUser: Boolean
+        ) {
+            parentViewModel.setPerformedMonth(progress)
+        }
+        override fun onStartTrackingTouch(numberPicker: NumberPicker) {}
+        override fun onStopTrackingTouch(numberPicker: NumberPicker) {}
+    }
+
+    private val dayListener = object : NumberPicker.OnNumberPickerChangeListener{
+        override fun onProgressChanged(
+            numberPicker: NumberPicker,
+            progress: Int,
+            fromUser: Boolean
+        ) {
+            parentViewModel.setPerformedDay(progress)
+        }
+        override fun onStartTrackingTouch(numberPicker: NumberPicker) {}
+        override fun onStopTrackingTouch(numberPicker: NumberPicker) {}
     }
 
 }

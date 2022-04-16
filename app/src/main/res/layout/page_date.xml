@@ -115,7 +115,6 @@
                 android:layout_gravity="center_vertical"
                 android:background="@color/white"
                 android:minWidth="120dp"
-                android:progress="10"
                 app:picker_editTextStyle="@style/textAccent"
                 app:picker_max="15"
                 app:picker_min="9"
