@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context=".presentation.main.gallery.QiblaFragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".presentation.main.qibla.QiblaFragment">
 
 
     <ImageView
@@ -55,34 +53,34 @@
         tools:ignore="HardcodedText" />
 
 
-   <!-- <LinearLayout
-        android:id="@+id/qibla_button"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@id/txt_azimuth"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/back_nosolid_black"
-        android:orientation="horizontal"
-        android:padding="10dp">
+    <!-- <LinearLayout
+         android:id="@+id/qibla_button"
+         android:layout_width="wrap_content"
+         android:layout_height="50dp"
+         android:layout_below="@id/txt_azimuth"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="20dp"
+         android:background="@drawable/back_nosolid_black"
+         android:orientation="horizontal"
+         android:padding="10dp">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_uzbekistan" />
+         <ImageView
+             android:layout_width="30dp"
+             android:layout_height="30dp"
+             android:layout_gravity="center"
+             android:src="@drawable/ic_uzbekistan" />
 
-        <TextView
-            android:id="@+id/qibla_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_toRightOf="@id/txt_azimuth"
-            android:text="Тошкент вилояти"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+         <TextView
+             android:id="@+id/qibla_country"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:layout_toRightOf="@id/txt_azimuth"
+             android:text="Тошкент вилояти"
+             android:textColor="@android:color/black"
+             android:textSize="18sp" />
 
-    </LinearLayout>-->
+     </LinearLayout>-->
 
     <TextView
         android:id="@+id/qibla_text"

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable-v23/checkbox_unchecked_rb.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable-v24/circle_progress_bar.xml" value="0.125" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/checkbox_checked_rb.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/checkbox_unchecked_rb.xml" value="0.1165" />
@@ -15,6 +16,7 @@
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_qibla_compass.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_splash_logo.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/intro_back.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/prayer_card_back.xml" value="0.125" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/rbtn_selector.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/activity_main.xml" value="0.17314814814814813" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/activity_welcome.xml" value="0.20416666666666666" />
@@ -22,11 +24,14 @@
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/content_main.xml" value="0.20416666666666666" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/dialog_player.xml" value="0.20416666666666666" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_data_collect.xml" value="0.20416666666666666" />
-        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_edit.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_intro.xml" value="0.22" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_pager.xml" value="0.20416666666666666" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_qibla.xml" value="0.20416666666666666" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/item_edit_prayer.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/item_prayer.xml" value="0.33" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/layout_pager.xml" value="0.20416666666666666" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/page_date.xml" value="0.22" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/page_gender.xml" value="0.22" />

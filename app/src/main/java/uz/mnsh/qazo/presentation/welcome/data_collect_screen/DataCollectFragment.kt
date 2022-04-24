@@ -1,5 +1,6 @@
 package uz.mnsh.qazo.presentation.welcome.data_collect_screen
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,9 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import uz.mnsh.qazo.databinding.FragmentDataCollectBinding
+import uz.mnsh.qazo.domain.use_case.UserUseCases
+import uz.mnsh.qazo.presentation.main.MainActivity
 import uz.mnsh.qazo.presentation.welcome.adapter.PagerAdapter
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DataCollectFragment : Fragment() {
 
     private var _binding: FragmentDataCollectBinding? =null
@@ -18,6 +24,7 @@ class DataCollectFragment : Fragment() {
     private lateinit var adapter:PagerAdapter
     private val viewModel: DataCollectViewModel by viewModels()
     private val TAG = "DataCollectFragment"
+    @Inject lateinit var userUseCases: UserUseCases
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +44,8 @@ class DataCollectFragment : Fragment() {
                 }
                 binding.viewPager.currentItem == 2 -> {
                     val user = viewModel.getUser()
+                    userUseCases.addUser.invoke(user)
+                    startActivity(Intent(binding.root.context, MainActivity::class.java))
                     Log.d(TAG, "onCreateView: $user")
                 }
                 else -> {

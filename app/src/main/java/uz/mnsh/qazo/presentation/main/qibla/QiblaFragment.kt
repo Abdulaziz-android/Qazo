@@ -1,4 +1,4 @@
-package uz.mnsh.qazo.presentation.main.gallery
+package uz.mnsh.qazo.presentation.main.qibla
 
 import android.annotation.SuppressLint
 import android.content.Context

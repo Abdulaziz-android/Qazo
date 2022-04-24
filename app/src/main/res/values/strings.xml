@@ -30,5 +30,14 @@
     <string name="month">Ой</string>
     <string name="day">Кун</string>
     <string name="special_female">* Aёлларга хос ҳолатлар. Бир ойда ўртача ҳайз кўриш кунлари</string>
+    <string name="edit_page_title">Сиз ўтказиб юборган ҳар қандай намозни ёки ибодат қилган қазо намозни қўшишингиз мумкин.</string>
+
+    <string-array name="PrayerTimes">
+        <item>Bomdod</item>
+        <item>Peshin</item>
+        <item>Asr</item>
+        <item>Shom</item>
+        <item>Hufton</item>
+    </string-array>
 
 </resources>

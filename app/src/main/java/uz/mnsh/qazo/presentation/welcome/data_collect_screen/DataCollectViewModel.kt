@@ -101,7 +101,6 @@ class DataCollectViewModel : ViewModel() {
         performedDays = if (performedDays<0) 0 else performedDays
 
         return User(
-            gender = _gender.value!!,
             birthDate = _birthDate.value ?: "",
             pubertyAge = _pubertyAge.value ?: 9,
             menstrualDays = _menstrualDays.value ?: if (_gender.value == Gender.FEMALE) 6 else 0,

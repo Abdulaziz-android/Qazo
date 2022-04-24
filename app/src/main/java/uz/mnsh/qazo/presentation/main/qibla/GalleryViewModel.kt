@@ -1,4 +1,4 @@
-package uz.mnsh.qazo.presentation.main.gallery
+package uz.mnsh.qazo.presentation.main.qibla
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
