@@ -5,9 +5,12 @@
       <map>
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable-v23/checkbox_unchecked_rb.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable-v24/circle_progress_bar.xml" value="0.125" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable-v24/ic_calculate.xml" value="0.1455" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/checkbox_checked_rb.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/checkbox_unchecked_rb.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/circle_progress_bar.xml" value="0.139" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/circle_shape.xml" value="0.18" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_baseline_pause_circle_outline_24.xml" value="0.13" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_baseline_play_circle_outline_24.xml" value="0.13" />
@@ -16,6 +19,7 @@
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_qibla_compass.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/ic_splash_logo.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/intro_back.xml" value="0.1165" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/layout_back_gradient.xml" value="0.1455" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/prayer_card_back.xml" value="0.125" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/drawable/rbtn_selector.xml" value="0.1165" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/activity_main.xml" value="0.17314814814814813" />
@@ -23,6 +27,7 @@
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/app_bar_main.xml" value="0.20416666666666666" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/content_main.xml" value="0.20416666666666666" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/dialog_player.xml" value="0.20416666666666666" />
+        <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_calculate.xml" value="0.25" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_data_collect.xml" value="0.20416666666666666" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_edit.xml" value="0.20416666666666666" />
         <entry key="..\:/pdp/Qazo/app/src/main/res/layout/fragment_home.xml" value="0.22" />

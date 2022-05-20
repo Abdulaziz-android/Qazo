@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import uz.mnsh.qazo.R
-import uz.mnsh.qazo.common.Gender
+import uz.mnsh.qazo.common.Constants
 import uz.mnsh.qazo.databinding.PageGenderBinding
 import uz.mnsh.qazo.presentation.welcome.data_collect_screen.DataCollectViewModel
 
@@ -33,9 +33,9 @@ class GenderPage : Fragment() {
     private fun setGenderPage() {
 
         binding.radioGroup.setOnCheckedChangeListener { _, p1 ->
-            val gender: Gender? = when (p1) {
-                R.id.male_rb -> Gender.MALE
-                R.id.female_rb -> Gender.FEMALE
+            val gender: String? = when (p1) {
+                R.id.male_rb -> Constants.MALE
+                R.id.female_rb -> Constants.FEMALE
                 else -> null
             }
             gender?.let { parentViewModel.setGender(it) }

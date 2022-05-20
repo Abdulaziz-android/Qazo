@@ -2,19 +2,17 @@ package uz.mnsh.qazo.presentation.welcome.data_collect_screen
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import uz.mnsh.qazo.databinding.FragmentDataCollectBinding
-import uz.mnsh.qazo.domain.use_case.UserUseCases
 import uz.mnsh.qazo.presentation.main.MainActivity
+import uz.mnsh.qazo.presentation.welcome.WelcomeActivity
 import uz.mnsh.qazo.presentation.welcome.adapter.PagerAdapter
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class DataCollectFragment : Fragment() {
@@ -23,8 +21,6 @@ class DataCollectFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter:PagerAdapter
     private val viewModel: DataCollectViewModel by viewModels()
-    private val TAG = "DataCollectFragment"
-    @Inject lateinit var userUseCases: UserUseCases
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,14 +35,13 @@ class DataCollectFragment : Fragment() {
 
         binding.positiveBtn.setOnClickListener {
             when {
-                viewModel.gender.value == null -> {
+                viewModel.gender.value!!.isEmpty() -> {
                     Toast.makeText(binding.root.context, "Жинс танланмаган!", Toast.LENGTH_SHORT).show()
                 }
                 binding.viewPager.currentItem == 2 -> {
-                    val user = viewModel.getUser()
-                    userUseCases.addUser.invoke(user)
+                    viewModel.saveAllData()
+                    (activity as WelcomeActivity?)?.finish()
                     startActivity(Intent(binding.root.context, MainActivity::class.java))
-                    Log.d(TAG, "onCreateView: $user")
                 }
                 else -> {
                     binding.viewPager.currentItem += 1

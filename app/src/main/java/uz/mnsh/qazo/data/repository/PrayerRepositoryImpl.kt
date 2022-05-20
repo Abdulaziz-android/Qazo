@@ -1,16 +1,21 @@
 package uz.mnsh.qazo.data.repository
 
-import uz.mnsh.qazo.data.local.dao.UserDao
-import uz.mnsh.qazo.domain.model.User
+import uz.mnsh.qazo.data.local.dao.PrayerDao
+import uz.mnsh.qazo.domain.model.Prayer
 import uz.mnsh.qazo.domain.repository.PrayerRepository
 
-class PrayerRepositoryImpl(private val userDao: UserDao) : PrayerRepository {
+class PrayerRepositoryImpl(private val prayerDao: PrayerDao) : PrayerRepository {
 
-    override suspend fun getUser(): User {
-        return userDao.getUser()
+    override fun insert(prayer: Prayer) {
+        prayerDao.insert(prayer)
     }
 
-    override fun insertUser(user: User) {
-        userDao.insert(user)
+    override suspend fun getAllPrayers(): List<Prayer>? {
+        return prayerDao.getAllPrayers()
     }
+
+    override suspend fun getPrayerByName(name: String): Prayer? {
+        return prayerDao.getPrayerByName(name)
+    }
+
 }

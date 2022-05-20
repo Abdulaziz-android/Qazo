@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="160dp"
     android:layout_height="180dp"
-    app:cardCornerRadius="30dp"
     android:layout_marginVertical="6dp"
-    android:layout_marginEnd="12dp"
     android:layout_marginStart="4dp"
+    android:layout_marginEnd="12dp"
+    app:cardCornerRadius="30dp"
     app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,35 +24,34 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ProgressBar
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
             android:id="@+id/progress_bar"
-            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.8"
-            app:layout_constraintDimensionRatio="1:1"
-            android:max="100"
-            android:progress="80"
-            android:progressDrawable="@drawable/circle_progress_bar"
             android:rotation="145"
+            app:cpb_background_progressbar_width="9dp"
+            app:cpb_progressbar_width="9dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.88"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6"
+            app:layout_constraintWidth_percent="0.8" />
 
 
         <TextView
             android:id="@+id/count_tv"
             android:layout_width="0dp"
-            android:text="15"
-            android:gravity="center"
-            android:textSize="20sp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="@id/progress_bar"
+            android:gravity="center"
+            android:text="15"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/progress_bar"
             app:layout_constraintEnd_toEndOf="@id/progress_bar"
-            app:layout_constraintTop_toTopOf="@id/progress_bar"
-            app:layout_constraintBottom_toBottomOf="@id/progress_bar"/>
+            app:layout_constraintStart_toStartOf="@id/progress_bar"
+            app:layout_constraintTop_toTopOf="@id/progress_bar" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

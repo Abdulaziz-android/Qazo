@@ -31,13 +31,26 @@
     <string name="day">Кун</string>
     <string name="special_female">* Aёлларга хос ҳолатлар. Бир ойда ўртача ҳайз кўриш кунлари</string>
     <string name="edit_page_title">Сиз ўтказиб юборган ҳар қандай намозни ёки ибодат қилган қазо намозни қўшишингиз мумкин.</string>
+    <string name="menu_calculate">Қазони ҳисоблаш</string>
+    <string name="all">Жами:</string>
+    <string name="percent">%</string>
+    <string name="accidental_performed">қазо ўқилди</string>
+    <string name="today">Бугун</string>
 
-    <string-array name="PrayerTimes">
+    <string-array name="PrayerTimesInUzb">
         <item>Bomdod</item>
         <item>Peshin</item>
         <item>Asr</item>
         <item>Shom</item>
         <item>Hufton</item>
+    </string-array>
+
+    <string-array name="PrayerTimes">
+        <item>fajr</item>
+        <item>dhuhr</item>
+        <item>asr</item>
+        <item>maghrib</item>
+        <item>isha</item>
     </string-array>
 
 </resources>

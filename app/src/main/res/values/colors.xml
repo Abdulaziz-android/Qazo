@@ -15,11 +15,29 @@
     <color name="yellow_light">#FFD485</color>
     <color name="gray">#D3D3D3</color>
     <color name="pink_light">#FFCFC1</color>
-    <color name="purple">#8446FF</color>
     <color name="brown_light">#A6A6A6</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="yellow">#FFDE6F</color>
+    <color name="pink">#FFCFC1</color>
+    <color name="green">#22D52B</color>
     <color name="brown">#717171</color>
+    <color name="purple">#8446FF</color>
 
+    <string-array name="progress_colors">
+        <item>#FFDE6F</item>
+        <item>#FFCFC1</item>
+        <item>#22D52B</item>
+        <item>#717171</item>
+        <item>#8446FF</item>
+    </string-array>
 
-
+    <string-array name="progress_colors_20">
+        <item>#33FFDE6F</item>
+        <item>#33FFCFC1</item>
+        <item>#3322D52B</item>
+        <item>#33717171</item>
+        <item>#338446FF</item>
+    </string-array>
 
 </resources>

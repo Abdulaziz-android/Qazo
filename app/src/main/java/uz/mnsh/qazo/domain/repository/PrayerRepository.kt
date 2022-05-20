@@ -1,12 +1,14 @@
 package uz.mnsh.qazo.domain.repository
 
-import uz.mnsh.qazo.domain.model.User
+import uz.mnsh.qazo.domain.model.Prayer
 
 interface PrayerRepository {
 
-    suspend fun getUser():User
+    fun insert(prayer: Prayer)
 
-    fun insertUser(user: User)
+    suspend fun getAllPrayers():List<Prayer>?
+
+    suspend fun getPrayerByName(name:String):Prayer?
 
 
 }

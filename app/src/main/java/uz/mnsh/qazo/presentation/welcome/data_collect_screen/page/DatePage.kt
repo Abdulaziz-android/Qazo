@@ -22,7 +22,6 @@ import androidx.fragment.app.viewModels
 import it.sephiroth.android.library.numberpicker.NumberPicker
 import uz.mnsh.qazo.R
 import uz.mnsh.qazo.common.Constants
-import uz.mnsh.qazo.common.Gender
 import uz.mnsh.qazo.databinding.DialogPlayerBinding
 import uz.mnsh.qazo.databinding.PageDateBinding
 import uz.mnsh.qazo.presentation.welcome.data_collect_screen.DataCollectViewModel
@@ -34,7 +33,6 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
     private var _binding: PageDateBinding? = null
     private val binding get() = _binding!!
     private val parentViewModel: DataCollectViewModel by viewModels({ requireParentFragment() })
-    private val TAG = "DatePage"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +40,8 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
     ): View {
         _binding = PageDateBinding.inflate(inflater, container, false)
 
-        parentViewModel.pagePosition.observe(viewLifecycleOwner){ position ->
-            if (position==1){
+        parentViewModel.pagePosition.observe(viewLifecycleOwner) { position ->
+            if (position == 1) {
                 setDatePage()
             }
         }
@@ -60,21 +58,21 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private fun setUpFemaleWindow() {
         when (parentViewModel.gender.value) {
-                is Gender.MALE -> {
-                    binding.pubertyAgeNp.progress = Constants.DEFAULT_PUBERTY_AGE_MALE
-                    parentViewModel.setMenstrualDays(0)
-                    binding.spacer.visibility = View.VISIBLE
-                    binding.femaleTv.visibility = View.GONE
-                    binding.femaleCard.visibility = View.GONE
-                }
-                is Gender.FEMALE -> {
-                    val menstrualDays = binding.femaleNp.progress
-                    binding.pubertyAgeNp.progress = Constants.DEFAULT_PUBERTY_AGE_FEMALE
-                    parentViewModel.setMenstrualDays(menstrualDays)
-                    binding.spacer.visibility = View.GONE
-                    binding.femaleTv.visibility = View.VISIBLE
-                    binding.femaleCard.visibility = View.VISIBLE
-                }
+            Constants.MALE -> {
+                binding.pubertyAgeNp.progress = Constants.DEFAULT_PUBERTY_AGE_MALE
+                parentViewModel.setMenstrualDays(0)
+                binding.spacer.visibility = View.VISIBLE
+                binding.femaleTv.visibility = View.GONE
+                binding.femaleCard.visibility = View.GONE
+            }
+            Constants.FEMALE -> {
+                val menstrualDays = binding.femaleNp.progress
+                binding.pubertyAgeNp.progress = Constants.DEFAULT_PUBERTY_AGE_FEMALE
+                parentViewModel.setMenstrualDays(menstrualDays)
+                binding.spacer.visibility = View.GONE
+                binding.femaleTv.visibility = View.VISIBLE
+                binding.femaleCard.visibility = View.VISIBLE
+            }
             else -> {}
         }
 
@@ -140,8 +138,9 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
         }
         val cal = Calendar.getInstance()
         val calNow = Calendar.getInstance()
-        val cYear = if (parentViewModel.gender.value==Gender.MALE) Constants.DEFAULT_PUBERTY_AGE_MALE
-        else Constants.DEFAULT_PUBERTY_AGE_FEMALE
+        val cYear =
+            if (parentViewModel.gender.value == Constants.MALE) Constants.DEFAULT_PUBERTY_AGE_MALE
+            else Constants.DEFAULT_PUBERTY_AGE_FEMALE
         cal.set(Calendar.YEAR, calNow.get(Calendar.YEAR) - cYear)
         dialog.datePicker.maxDate = cal.timeInMillis
 
@@ -157,17 +156,17 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
                     progress: Int,
                     fromUser: Boolean
                 ) {
-                  /*  val calBirth = Calendar.getInstance()
-                    val calNow = Calendar.getInstance()
-                    val sdf = SimpleDateFormat(Constants.BIRTH_DATE_PATTERN, Locale.ENGLISH)
-                    calBirth.time = sdf.parse(parentViewModel.birthDate.value!!)!!
-                    val year = calNow.get(Calendar.YEAR) - calBirth.get(Calendar.YEAR)
-                    if (year<progress) {
-                        parentViewModel.setPubertyAge(progress)
-                    }else{
-                        binding.pubertyAgeNp.progress = parentViewModel.pubertyAge.value!!
-                    }
-*/
+                    /*  val calBirth = Calendar.getInstance()
+                      val calNow = Calendar.getInstance()
+                      val sdf = SimpleDateFormat(Constants.BIRTH_DATE_PATTERN, Locale.ENGLISH)
+                      calBirth.time = sdf.parse(parentViewModel.birthDate.value!!)!!
+                      val year = calNow.get(Calendar.YEAR) - calBirth.get(Calendar.YEAR)
+                      if (year<progress) {
+                          parentViewModel.setPubertyAge(progress)
+                      }else{
+                          binding.pubertyAgeNp.progress = parentViewModel.pubertyAge.value!!
+                      }
+  */
                     parentViewModel.setPubertyAge(progress)
                 }
 
@@ -177,8 +176,8 @@ class DatePage : Fragment(), DatePickerDialog.OnDateSetListener {
         binding.forgetChb.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 val defaultPubertyAge = when (parentViewModel.gender.value) {
-                    is Gender.MALE -> Constants.DEFAULT_PUBERTY_AGE_MALE
-                    is Gender.FEMALE -> Constants.DEFAULT_PUBERTY_AGE_FEMALE
+                    Constants.MALE -> Constants.DEFAULT_PUBERTY_AGE_MALE
+                    Constants.FEMALE -> Constants.DEFAULT_PUBERTY_AGE_FEMALE
                     else -> 9
                 }
                 binding.pubertyAgeNp.setProgress(defaultPubertyAge)

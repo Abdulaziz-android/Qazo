@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_calculate">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="uz.mnsh.qazo.presentation.main.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_calculate"
+        android:name="uz.mnsh.qazo.presentation.main.calculate.CalculateFragment"
+        android:label="@string/menu_calculate"
+        tools:layout="@layout/fragment_calculate" />
 
     <fragment
         android:id="@+id/nav_qibla"

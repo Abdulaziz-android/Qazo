@@ -7,11 +7,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import uz.mnsh.qazo.data.local.AppDatabase
+import uz.mnsh.qazo.data.repository.UserRepositoryImpl
 import uz.mnsh.qazo.data.repository.PrayerRepositoryImpl
+import uz.mnsh.qazo.domain.repository.UserRepository
 import uz.mnsh.qazo.domain.repository.PrayerRepository
-import uz.mnsh.qazo.domain.use_case.AddUser
-import uz.mnsh.qazo.domain.use_case.GetUser
-import uz.mnsh.qazo.domain.use_case.UserUseCases
+import uz.mnsh.qazo.domain.use_case.*
 import javax.inject.Singleton
 
 @Module
@@ -30,16 +30,24 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePrayerRepository(db: AppDatabase): PrayerRepository {
-        return PrayerRepositoryImpl(db.userDao())
+    fun providePrayerRepository(db: AppDatabase): UserRepository {
+        return UserRepositoryImpl(db.userDao())
     }
 
     @Provides
     @Singleton
-    fun provideUserUseCases(repository: PrayerRepository): UserUseCases {
+    fun provideStatisticRepository(db: AppDatabase): PrayerRepository {
+        return PrayerRepositoryImpl(db.prayerDao())
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserUseCases(userRepository: UserRepository, prayerRepository: PrayerRepository): UserUseCases {
         return UserUseCases(
-            addUser = AddUser(repository),
-            getUser = GetUser(repository),
+            addUser = AddUser(userRepository),
+            getUser = GetUser(userRepository),
+            addPrayer = AddPrayer(prayerRepository),
+            getPrayers = GetPrayers(prayerRepository)
         )
     }
 

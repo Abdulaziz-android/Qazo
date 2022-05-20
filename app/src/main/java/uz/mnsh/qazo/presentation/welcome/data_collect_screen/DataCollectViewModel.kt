@@ -1,24 +1,36 @@
 package uz.mnsh.qazo.presentation.welcome.data_collect_screen
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import uz.mnsh.qazo.common.Gender
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import uz.mnsh.qazo.R
+import uz.mnsh.qazo.common.Constants
+import uz.mnsh.qazo.domain.model.Prayer
 import uz.mnsh.qazo.domain.model.User
+import uz.mnsh.qazo.domain.use_case.UserUseCases
 import java.util.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class DataCollectViewModel : ViewModel() {
+@HiltViewModel
+class DataCollectViewModel @SuppressLint("StaticFieldLeak")
+@Inject constructor(
+    private var userUseCases: UserUseCases,
+     @ApplicationContext private val  context: Context
+) : ViewModel() {
 
     private val TAG = "DataCollectViewModel"
 
     private val _pagePosition = MutableLiveData(0)
     var pagePosition: LiveData<Int> = _pagePosition
 
-    private val _gender = MutableLiveData<Gender>()
-    var gender: LiveData<Gender> = _gender
+    private val _gender = MutableLiveData<String>("")
+    var gender: LiveData<String> = _gender
 
     private val _birthDate = MutableLiveData<String>()
     var birthDate: LiveData<String> = _birthDate
@@ -51,7 +63,7 @@ class DataCollectViewModel : ViewModel() {
         _pagePosition.value = position
     }
 
-    fun setGender(gender: Gender) {
+    fun setGender(gender: String) {
         _gender.value = gender
     }
 
@@ -91,26 +103,53 @@ class DataCollectViewModel : ViewModel() {
         _dayPerformed.value = day
     }
 
-    fun getUser(): User {
+    fun saveAllData() {
+        saveUser()
+        savePrayers()
+    }
+
+    private fun savePrayers() {
+
         val daysOfDate = getDaysDatePage()
 
         val daysOfYear = _yearPerformed.value!! * 365.25
         val daysOfMonth = _monthPerformed.value!! * 365.25 / 12
         val days = _dayPerformed.value!!
-        var performedDays = (daysOfDate - (daysOfYear + daysOfMonth + days)).toInt()
-        performedDays = if (performedDays<0) 0 else performedDays
+        val performedPrayer = (daysOfYear + daysOfMonth + days).toInt()
+        val remainingDays = if (daysOfDate <= performedPrayer) 0 else (daysOfDate - performedPrayer)
+
+        val prayerTimes = context.resources.getStringArray(R.array.PrayerTimesInUzb)
+        val progressColors = context.resources.getStringArray(R.array.progress_colors)
+        val progressColors20 = context.resources.getStringArray(R.array.progress_colors_20)
+
+        prayerTimes.forEachIndexed { index, s ->
+            val prayer = Prayer(
+                prayerTimeName = s,
+                performedCount = 50,
+                remainingCount = remainingDays,
+                date = "",
+                todayPerformedCount = 0,
+                progressColor = progressColors[index],
+                progressColor20 = progressColors20[index]
+            )
+
+            userUseCases.addPrayer(prayer)
+        }
+    }
+
+    private fun saveUser() {
+        val user = getUser()
+        userUseCases.addUser(user)
+    }
+
+    private fun getUser(): User {
 
         return User(
+            gender = _gender.value!!,
             birthDate = _birthDate.value ?: "",
             pubertyAge = _pubertyAge.value ?: 9,
-            menstrualDays = _menstrualDays.value ?: if (_gender.value == Gender.FEMALE) 6 else 0,
-            fajr = performedDays,
-            dhuhr = performedDays,
-            asr = performedDays,
-            maghrib = performedDays,
-            isha = performedDays,
+            menstrualDays = _menstrualDays.value ?: if (_gender.value == Constants.FEMALE) 6 else 0,
         )
-
     }
 
     @SuppressLint("LogNotTimber")
@@ -130,7 +169,7 @@ class DataCollectViewModel : ViewModel() {
         var days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS).toInt()
         Log.d(TAG, "getDaysAfterDatePage: ${pubertyAge.value!!} and $days")
 
-        if (gender.value == Gender.FEMALE) {
+        if (gender.value == Constants.FEMALE) {
             Log.d(TAG, "getDaysAfterDatePage: ${pubertyAge.value!!} and $days")
             val allMenstrualDays = ((days / 365.25) * 12) * menstrualDays.value!!
             Log.d(TAG, "getDaysAfterDatePage: ${menstrualDays.value!!} and $allMenstrualDays")

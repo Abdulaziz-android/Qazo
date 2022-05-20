@@ -15,18 +15,18 @@
             android:exported="true"
             android:theme="@style/Theme.Qazo.Fullscreen">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
 
         </activity>
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Qazo.NoActionBar">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
     </application>
