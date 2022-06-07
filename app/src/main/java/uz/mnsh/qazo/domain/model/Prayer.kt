@@ -9,7 +9,7 @@ data class Prayer(
     val prayerTimeName:String,
     var performedCount:Int,
     var remainingCount:Int,
-    val date:String,
+    var date:String,
     var todayPerformedCount:Int,
     val progressColor:String,
     val progressColor20:String

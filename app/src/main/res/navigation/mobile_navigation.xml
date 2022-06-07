@@ -22,4 +22,10 @@
         android:name="uz.mnsh.qazo.presentation.main.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_edit"
+        android:name="uz.mnsh.qazo.presentation.main.edit.EditFragment"
+        android:label="@string/edit_prayer"
+        tools:layout="@layout/fragment_edit" />
 </navigation>

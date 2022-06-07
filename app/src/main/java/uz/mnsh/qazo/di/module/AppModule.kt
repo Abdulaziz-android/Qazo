@@ -47,6 +47,7 @@ object AppModule {
             addUser = AddUser(userRepository),
             getUser = GetUser(userRepository),
             addPrayer = AddPrayer(prayerRepository),
+            updatePrayers = UpdatePrayers(prayerRepository),
             getPrayers = GetPrayers(prayerRepository)
         )
     }

@@ -13,6 +13,7 @@ import uz.mnsh.qazo.common.Constants
 import uz.mnsh.qazo.domain.model.Prayer
 import uz.mnsh.qazo.domain.model.User
 import uz.mnsh.qazo.domain.use_case.UserUseCases
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -110,6 +111,7 @@ class DataCollectViewModel @SuppressLint("StaticFieldLeak")
 
     private fun savePrayers() {
 
+        val todayDate = SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).format(Date())
         val daysOfDate = getDaysDatePage()
 
         val daysOfYear = _yearPerformed.value!! * 365.25
@@ -127,7 +129,7 @@ class DataCollectViewModel @SuppressLint("StaticFieldLeak")
                 prayerTimeName = s,
                 performedCount = 50,
                 remainingCount = remainingDays,
-                date = "",
+                date = todayDate,
                 todayPerformedCount = 0,
                 progressColor = progressColors[index],
                 progressColor20 = progressColors20[index]

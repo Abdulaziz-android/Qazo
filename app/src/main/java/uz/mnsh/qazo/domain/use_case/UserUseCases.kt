@@ -4,5 +4,6 @@ data class UserUseCases(
     val addUser: AddUser,
     val getUser: GetUser,
     val addPrayer: AddPrayer,
+    val updatePrayers: UpdatePrayers,
     val getPrayers: GetPrayers
 )
