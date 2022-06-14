@@ -1,21 +1,23 @@
 package uz.mnsh.qazo.presentation.main.adapter
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.mnsh.qazo.databinding.ItemPrayerBinding
 import uz.mnsh.qazo.domain.model.Prayer
-import javax.inject.Inject
+import uz.mnsh.qazo.presentation.main.adapter.callBacks.DiffCallBacks
 
-class PrayerAdapter @Inject constructor() : RecyclerView.Adapter<PrayerAdapter.PVH>() {
-
-    private var list = listOf<Prayer>()
+class PrayerAdapter(
+    private val listener: OnPrayerClickListener
+) : ListAdapter<Prayer, PrayerAdapter.PVH>(
+    DiffCallBacks.DiffCallBack
+) {
 
     inner class PVH(private val itemBinding: ItemPrayerBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun onBind(prayer: Prayer) {
+        fun onBind(prayer: Prayer, position: Int) {
             itemBinding.apply {
                 titleTv.text = prayer.prayerTimeName
                 itemBinding.countTv.text = prayer.remainingCount.toString()
@@ -24,8 +26,17 @@ class PrayerAdapter @Inject constructor() : RecyclerView.Adapter<PrayerAdapter.P
                     progressBarColor = Color.parseColor(prayer.progressColor)
                     backgroundProgressBarColor = Color.parseColor(prayer.progressColor20)
 
-                    progressMax = prayer.remainingCount.toFloat()
-                    progress = prayer.performedCount.toFloat()
+                    if (prayer.remainingCount == 0) {
+                        progressMax = 1f
+                        progress = 1f
+                    } else {
+                        progressMax = prayer.remainingCount.toFloat() + prayer.performedCount.toFloat()
+                        progress = prayer.performedCount.toFloat()
+                    }
+                }
+
+                root.setOnClickListener {
+                    listener.onPrayerClicked(prayer, position)
                 }
             }
         }
@@ -36,15 +47,11 @@ class PrayerAdapter @Inject constructor() : RecyclerView.Adapter<PrayerAdapter.P
     }
 
     override fun onBindViewHolder(holder: PVH, position: Int) {
-        holder.onBind(list[position])
+        holder.onBind(getItem(position), position)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun submitList(list: List<Prayer>) {
-        this.list = list
-        notifyDataSetChanged()
+    interface OnPrayerClickListener {
+        fun onPrayerClicked(prayer: Prayer, position: Int)
     }
-
-    override fun getItemCount(): Int = list.size
 
 }

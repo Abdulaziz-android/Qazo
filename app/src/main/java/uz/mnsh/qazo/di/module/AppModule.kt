@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import uz.mnsh.qazo.data.local.AppDatabase
+import uz.mnsh.qazo.data.local.dao.PrayerDao
 import uz.mnsh.qazo.data.repository.UserRepositoryImpl
 import uz.mnsh.qazo.data.repository.PrayerRepositoryImpl
 import uz.mnsh.qazo.domain.repository.UserRepository
@@ -20,12 +21,18 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNoteDatabase(app: Application): AppDatabase {
+    fun provideAppDatabase(app: Application): AppDatabase {
         return Room.databaseBuilder(
             app,
             AppDatabase::class.java,
             AppDatabase.DATABASE
         ).allowMainThreadQueries().build()
+    }
+
+    @Provides
+    @Singleton
+    fun providePrayerDao(database: AppDatabase): PrayerDao {
+        return database.prayerDao()
     }
 
     @Provides
@@ -48,7 +55,8 @@ object AppModule {
             getUser = GetUser(userRepository),
             addPrayer = AddPrayer(prayerRepository),
             updatePrayers = UpdatePrayers(prayerRepository),
-            getPrayers = GetPrayers(prayerRepository)
+            getPrayers = GetPrayers(prayerRepository),
+            getLivePrayers = GetLivePrayers(prayerRepository)
         )
     }
 

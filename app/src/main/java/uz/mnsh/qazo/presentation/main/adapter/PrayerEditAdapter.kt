@@ -4,16 +4,16 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import it.sephiroth.android.library.numberpicker.NumberPicker
 import uz.mnsh.qazo.databinding.ItemEditPrayerBinding
 import uz.mnsh.qazo.domain.model.Prayer
+import uz.mnsh.qazo.presentation.main.adapter.callBacks.DiffCallBacks
 import javax.inject.Inject
 
 class PrayerEditAdapter @Inject constructor() :
-    ListAdapter<Prayer, PrayerEditAdapter.PVH>(DiffCallBack) {
+    ListAdapter<Prayer, PrayerEditAdapter.PVH>(DiffCallBacks.DiffCallBack) {
 
     private val TAG = "PrayerEditAdapter"
     
@@ -66,14 +66,4 @@ class PrayerEditAdapter @Inject constructor() :
         holder.onBind(getItem(position))
     }
 
-    companion object DiffCallBack : DiffUtil.ItemCallback<Prayer>() {
-        override fun areItemsTheSame(oldItem: Prayer, newItem: Prayer): Boolean {
-            return (oldItem.prayerTimeName == newItem.prayerTimeName)
-        }
-
-        override fun areContentsTheSame(oldItem: Prayer, newItem: Prayer): Boolean {
-            return (oldItem.prayerTimeName == newItem.prayerTimeName)
-        }
-
-    }
 }

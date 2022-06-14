@@ -74,10 +74,11 @@ class EditFragment : Fragment() {
                         val list = state.data
                         if (list != null && list.isNotEmpty()) {
                             if (currentList.isEmpty()) {
-                                list.forEach {
+                                list.forEachIndexed { index, it ->
                                     currentList.add(
                                         Prayer(
                                             prayerTimeName = it.prayerTimeName,
+                                            range = index,
                                             performedCount = it.performedCount,
                                             remainingCount = it.remainingCount,
                                             date = it.date,
@@ -88,7 +89,8 @@ class EditFragment : Fragment() {
                                     )
                                 }
                             }
-                            adapter.submitList(list)
+                            val sortedList = list.sortedBy { it.range }
+                            adapter.submitList(sortedList)
                         }
                     }
                     is Resource.Error -> {

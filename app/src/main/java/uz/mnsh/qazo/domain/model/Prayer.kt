@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class Prayer(
     @PrimaryKey
     val prayerTimeName:String,
+    val range:Int,
     var performedCount:Int,
     var remainingCount:Int,
     var date:String,

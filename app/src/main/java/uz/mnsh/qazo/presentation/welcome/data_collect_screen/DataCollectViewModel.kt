@@ -127,6 +127,7 @@ class DataCollectViewModel @SuppressLint("StaticFieldLeak")
         prayerTimes.forEachIndexed { index, s ->
             val prayer = Prayer(
                 prayerTimeName = s,
+                range = index,
                 performedCount = 50,
                 remainingCount = remainingDays,
                 date = todayDate,

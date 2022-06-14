@@ -16,14 +16,8 @@ class GetPrayers(
             if (prayers != null) {
                 emit(Resource.Success<List<Prayer>>(prayers))
             } else {
-                /*val max = averagePrayerCount
-                val newStatistic = Statistic(
-                    date = date,
-                    max = max
-                )
+                emit(Resource.Error<List<Prayer>>("Ma'lumotlar mavjud emas!"))
 
-                repository.insert(newStatistic)
-                emit(Resource.Success<List<Prayer>>(newStatistic))*/
             }
         } catch (e: Exception) {
             emit(Resource.Error<List<Prayer>>(e.localizedMessage ?: "Error!"))
